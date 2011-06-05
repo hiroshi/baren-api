@@ -11,7 +11,6 @@ def path_to_png(md5)
   File.join(Dir.tmpdir, md5 + ".png")
 end
 
-#set :views, File.dirname(__FILE__)
 set :public, File.dirname(__FILE__) + "/public"
 
 get '/' do
@@ -41,7 +40,6 @@ end
 get '/images/*.png' do |md5|
   path = path_to_png(md5)
   if File.exist? path
-    #content_type "image/png"
     content_type :png
     File.open(path, "rb").read
   else
