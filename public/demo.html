@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>A baren demo</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+</head>
+<body>
+  <a class="png"><img /></a>
+  <form class="pjs" action="/api/pjs">
+    <textarea cols="40" rows="20">
+/* @pjs transparent=true; */
+size(30, 30);
+background(0, 0, 0, 0);
+stroke(255, 0, 0);
+fill(255, 0, 0);
+ellipse(15, 15, 28, 28);
+    </textarea>
+    <br />
+    <input type="submit" value="update" />
+  </form>
+
+  <script>
+    $("form.pjs").live("submit", function(event) {
+      $.post(this.action, $(this).find("textarea")[0].value, function(data, textStatus, jqXHR) {
+        $("a.png")[0].href = data.url;
+        $(".png img")[0].src = data.url;
+      });
+      return false;
+    });
+    $(function () {
+      $("form.pjs").submit();
+    });
+  </script>
+</body>
+</html>
