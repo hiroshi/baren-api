@@ -23,9 +23,18 @@ post '/api/pjs' do
   md5 = Digest::MD5.hexdigest(pjs)
   path = path_to_png(md5)
   unless File.exist? path
-    Baren::PjsTemplate.new{ pjs }.render(nil).tap do |png|
-      File.open(path, "wb") do |f|
-        f.print png
+    begin
+      Baren::PjsTemplate.new{ pjs }.render(nil).tap do |png|
+        File.open(path, "wb") do |f|
+          f.print png
+        end
+      end
+    rescue Baren::Error => e
+      if request.xhr?
+        content_type :json
+        return [400, {:error => e.message}.to_json]
+      else
+        return [400, e.message]
       end
     end
   end

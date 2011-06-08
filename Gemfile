@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 gem "sinatra"
-gem "baren", ">= 0.2.1"
+gem "baren", ">= 0.2.2"
 #gem "baren", :path => "../baren"
 
 gem "capistrano"

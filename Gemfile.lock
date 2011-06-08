@@ -1,7 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    baren (0.2.1)
+    baren (0.2.2)
       tilt (>= 1.1)
     capistrano (2.6.0)
       highline
@@ -28,7 +28,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  baren (>= 0.2.1)
+  baren (>= 0.2.2)
   capistrano
   rake
   sinatra
